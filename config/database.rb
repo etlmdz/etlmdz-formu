@@ -29,19 +29,29 @@ ActiveRecord::Base.configurations[:development] = {
   # url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
 #}
 
-configure :production do
- db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
+#configure :production do
+db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
 
- ActiveRecord::Base.establish_connection(
-   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-   :host     => db.host,
-   :username => db.user,
-   :password => db.password,
-   :database => db.path[1..-1],
-   :encoding => 'utf8'
- )
-end
+# ActiveRecord::Base.establish_connection(
+#   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+#   :host     => db.host,
+#   :username => db.user,
+#   :password => db.password,
+#   :database => db.path[1..-1],
+#   :encoding => 'utf8'
+# )
+#end
 
+module.exports = {
+  client: 'pg',
+  connection: process.env.DATABASE_URL || {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl: true
+  }
+};
 
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
