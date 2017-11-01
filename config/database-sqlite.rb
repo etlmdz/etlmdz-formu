@@ -14,32 +14,20 @@
 #   }
 #
 ActiveRecord::Base.configurations[:development] = {
-  :adapter   => 'postgresql',
-  :database  => 'etlmdz_development',
-  :username  => 'postgres',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'etlmdz_formu_development.db')
 
 }
 
 ActiveRecord::Base.configurations[:production] = {
-  :adapter   => 'postgresql',
-  :database  => 'etlmdz_production',
-  :username  => 'root',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'etlmdz_formu_production.db')
 
 }
 
 ActiveRecord::Base.configurations[:test] = {
-  :adapter   => 'postgresql',
-  :database  => 'etlmdz_test',
-  :username  => 'root',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'etlmdz_formu_test.db')
 
 }
 

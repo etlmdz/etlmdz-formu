@@ -21,7 +21,12 @@ gem 'activesupport', '>= 3.1'
 gem 'bcrypt'
 gem 'erubi', '~> 1.6'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'sqlite3'
+
+# gem 'sqlite3'
+gem 'pg', '~> 0.18'
+
+# gem 'yaml_db' # Muy util pero no anda en Padrino
+# gem 'seed_dump'
 
 gem 'pry-padrino'
 gem 'pry-byebug'
