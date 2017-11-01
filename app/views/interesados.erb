@@ -1,0 +1,33 @@
+<ul>
+  <% @mensajes.each do |m| %>
+    <li>
+      <%= m %>
+    </li>
+  <% end %>
+</ul>
+
+
+<% if @errores.count == 0 %>
+  <p>
+  Los datos han quedado almacenados en nuestro potente cluster Cassandra
+  </p>
+  <h6>En realidad queríamos impresionarlo, solo tenemos sqlite.</h6>
+<% else %>
+  <h2>Han ocurrido los siguientes errores al procesar el formulario</h2>
+  <ul>
+    <% @errores.each do |m| %>
+      <li>
+        <%= m %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<button onclick="goBack()">Volver</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

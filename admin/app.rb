@@ -36,6 +36,8 @@ module EtlmdzFormu
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :topicaccounts, '/topicaccounts'
+      role.project_module :topics, '/topics'
       role.project_module :accounts, '/accounts'
     end
 

@@ -23,6 +23,10 @@ gem 'erubi', '~> 1.6'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
 
+gem 'pry-padrino'
+gem 'pry-byebug'
+gem 'pry'
+
 # Test requirements
 
 # Padrino Stable Gem

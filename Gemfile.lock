@@ -14,6 +14,8 @@ GEM
       tzinfo (~> 1.1)
     arel (8.0.0)
     bcrypt (3.1.11)
+    byebug (9.1.0)
+    coderay (1.1.2)
     concurrent-ruby (1.0.5)
     enumerable-lazy (0.0.2)
     erubi (1.7.0)
@@ -21,6 +23,7 @@ GEM
       concurrent-ruby (~> 1.0)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    method_source (0.9.0)
     mime-types (2.99.3)
     minitest (5.10.3)
     moneta (0.8.1)
@@ -60,6 +63,14 @@ GEM
       mime-types (< 3)
       padrino-core (= 0.14.1.1)
     padrino-support (0.14.1.1)
+    pry (0.11.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-padrino (0.1.2)
+      pry (>= 0.8)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -85,6 +96,9 @@ DEPENDENCIES
   bcrypt
   erubi (~> 1.6)
   padrino (= 0.14.1.1)
+  pry
+  pry-byebug
+  pry-padrino
   rake
   sqlite3
 

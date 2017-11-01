@@ -5,6 +5,10 @@ module EtlmdzFormu
     register Padrino::Helpers
     enable :sessions
 
+    set :protection, true
+    set :protect_from_csrf, true
+    set :allow_disabled_csrf, true
+
     ##
     # Caching support.
     #
@@ -61,5 +65,62 @@ module EtlmdzFormu
     #     render 'errors/500'
     #   end
     #
-  end
+
+    post '/interesados', :csrf_protection => false do
+      binding.pry
+
+      @errores = Array.new
+      @mensajes = Array.new
+
+      unless mail_valido?(params[:email])
+        @errores << "Correo inexistente o mal escrito."
+      end
+
+      unless params[:nombre].blank? or params[:apellido].blank?
+        @errores << "Falta nombre o apellido."
+        @errores << "Al menos miéntanos. Se aceptan nombres graciosos tambien."
+      end
+
+      account = Account.new
+      account.email                 = params[:email]
+      account.name                  = params[:nombre]
+      account.surname               = params[:apellido]
+      account.password              = params[:email]
+      account.password_confirmation = params[:email]
+      account.role                  = "interesado"
+      if account.valid?
+        account.save
+      else
+        @errores << "Problema creando la cuenta"
+      end
+
+      if @errores.count == 0
+
+        array_de_topicos = params[:topico].keys # Para poder agregar a sorprendenos
+
+        if !params[:sorprendenos].blank?
+          topico_nuevo = Topic.create(nombre: params[:sorprendenos])
+          @mensajes << "Gracias por sugerir #{params[:sorprendenos]}, lo tendremos en cuenta"
+
+          array_de_topicos << params[:sorprendenos]
+        end
+
+        array_de_topicos.each do |t|
+          topic = Topicaccount.new
+          topic.account_id = account.id
+          topic.topic_id   = t.to_i
+          topic.save
+        end
+      end
+
+      erb :interesados
+    end
+
+    def mail_valido?(email)
+      # Cualquier cosa, aca hay otra mas completa: https://github.com/afair/email_address
+      valid = '[A-Za-z\d.+-_]+'
+      (email =~ /#{valid}@#{valid}\.#{valid}/) == 0
+    end
+
+  end # fin class
 end
