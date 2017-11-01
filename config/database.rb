@@ -26,7 +26,7 @@ ActiveRecord::Base.configurations[:development] = {
 #ActiveRecord::Base.configurations[:production] = {
   # Este dato se obtiene con
   # heroku config --app etlmdz-formu | grep HEROKU_POSTGRESQL
-  url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
+  # url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
 #}
 
 configure :production do
