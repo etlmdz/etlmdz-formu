@@ -24,13 +24,9 @@ ActiveRecord::Base.configurations[:development] = {
 }
 
 ActiveRecord::Base.configurations[:production] = {
-  :adapter   => 'postgresql',
-  :database  => 'etlmdz_production',
-  :username  => 'root',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
-
+  # Este dato se obtiene con
+  # heroku config --app etlmdz-formu | grep HEROKU_POSTGRESQL
+  url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
 }
 
 ActiveRecord::Base.configurations[:test] = {
