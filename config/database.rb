@@ -23,11 +23,16 @@ ActiveRecord::Base.configurations[:development] = {
 
 }
 
-#ActiveRecord::Base.configurations[:production] = {
- # Este dato se obtiene con
- # heroku config --app etlmdz-formu | grep HEROKU_POSTGRESQL
-# url: <%= ENV['HEROKU_POSTGRESQL_CRIMSON_URL'] %>
-#}
+ActiveRecord::Base.configurations[:test] = {
+  :adapter   => 'postgresql',
+  :database  => 'etlmdz_test',
+  :username  => 'root',
+  :password  => '',
+  :host      => 'localhost',
+  :port      => 5432
+
+}
+
 
 postgres = URI.parse(ENV['DATABASE_URL'] || '')
 
@@ -38,40 +43,6 @@ ActiveRecord::Base.configurations[:production] = {
   :username => postgres.user,
   :password => postgres.password,
   :host     => postgres.host
-}
-
-#configure :production do
-#b = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
-
-# ActiveRecord::Base.establish_connection(
-#   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-#   :host     => db.host,
-#   :username => db.user,
-#   :password => db.password,
-#   :database => db.path[1..-1],
-#   :encoding => 'utf8'
-# )
-#end
-
-#module.exports = {
-#  client: 'pg',
-#  connection: process.env.DATABASE_URL || {
-#    host: process.env.DB_HOST,
-#    user: process.env.DB_USER,
-#    password: process.env.DB_PASSWORD,
-#    database: process.env.DB_NAME,
-#    ssl: true
-#  }
-#};
-
-ActiveRecord::Base.configurations[:test] = {
-  :adapter   => 'postgresql',
-  :database  => 'etlmdz_test',
-  :username  => 'root',
-  :password  => '',
-  :host      => 'localhost',
-  :port      => 5432
-
 }
 
 # Setup our logger
