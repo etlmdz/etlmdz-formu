@@ -67,7 +67,7 @@ module EtlmdzFormu
     #
 
     post '/interesados', :csrf_protection => false do
-      binding.pry
+      # binding.pry
 
       @errores = Array.new
       @mensajes = Array.new
@@ -76,7 +76,7 @@ module EtlmdzFormu
         @errores << "Correo inexistente o mal escrito."
       end
 
-      unless params[:nombre].blank? or params[:apellido].blank?
+      if params[:nombre].blank? or params[:apellido].blank?
         @errores << "Falta nombre o apellido."
         @errores << "Al menos miéntanos. Se aceptan nombres graciosos tambien."
       end

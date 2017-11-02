@@ -1,17 +1,19 @@
-<ul>
   <% @mensajes.each do |m| %>
-    <li>
+    <p>
       <%= m %>
-    </li>
+    </p>
   <% end %>
-</ul>
-
 
 <% if @errores.count == 0 %>
   <p>
   Los datos han quedado almacenados en nuestro potente cluster Cassandra
   </p>
-  <h6>En realidad queríamos impresionarlo, solo tenemos sqlite.</h6>
+  <h6>
+    En realidad queríamos impresionarlo
+  </h6>
+  <h6>
+    Leímos por ahi que esa base era un artifundio mucho muy complicado y nos pareció importante ponerlo.
+  </h6>
 <% else %>
   <h2>Han ocurrido los siguientes errores al procesar el formulario</h2>
   <ul>
