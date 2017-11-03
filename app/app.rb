@@ -70,7 +70,7 @@ module EtlmdzFormu
       # Preparo un array de hashes para no andar ensuciando la vista
       # binding.pry
       @array_recuento = []
-      Topic.all.each do |topic|
+      Topic.where(aprobado: true).each do |topic|
         hash_topic = Hash.new
         hash_topic[:topico] = topic.nombre
         hash_topic[:votos]  = topic.accounts.count
