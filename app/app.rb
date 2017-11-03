@@ -101,6 +101,7 @@ module EtlmdzFormu
       account.password              = params[:email]
       account.password_confirmation = params[:email]
       account.role                  = "interesado"
+
       if account.valid?
         account.save
       else

@@ -40,6 +40,7 @@
                 <th class=header> <%= mat(:topic, :nombre) %></th>
                 <th class=header> <%= mat(:topic, :created_at) %></th>
                 <th class=header> <%= mat(:topic, :updated_at) %></th>
+                <th class=header> <%= mat(:topic, :aprobado) %></th>
                 <th class="header list-row-action-header"></th>
       </tr>
     </thead>
@@ -54,6 +55,13 @@
           <td class=list-column> <%= topic.nombre %> </td>
           <td class=list-column> <%= time_ago_in_words topic.created_at %></td>
           <td class=list-column> <%= time_ago_in_words topic.updated_at %></td>
+
+          <%# binding.pry %>
+          <%# <td class=list-column> %>
+            <%#= topic.aprobado ? tag_icon(:ok) : tag_icon(:remove) %> 
+          <%# </td>%>
+
+          <td class=list-column> <%= topic.aprobado ? "Si" : "No" %> </td>
           <td class="list-column list-row-action">
             <div class='list-row-action-wrapper'>
                <%= link_to tag_icon(:edit), :href => url(:topics, :edit, :id => topic.id), :rel => :tooltip, :title => "#{pat(:edit)} topic", :class => 'list-row-action-wrapper-link' %>

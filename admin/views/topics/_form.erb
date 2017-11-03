@@ -6,6 +6,14 @@
     <span class='help-inline'><%= error ? f.error_message_on(:nombre) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+<% error = @topic.errors.include?(:aprobado) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :aprobado, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.check_box :aprobado, :class => 'form-control input-xlarge input-with-feedback' %>
+    <span class='help-inline'><%= error ? f.error_message_on(:aprobado) : "Ex: a simple text" %></span>
+  </div>
+</fieldset>
 
 
 <div class="form-actions">
