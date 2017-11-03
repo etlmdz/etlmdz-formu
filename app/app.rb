@@ -66,6 +66,19 @@ module EtlmdzFormu
     #   end
     #
 
+    get '/' do
+      # Preparo un array de hashes para no andar ensuciando la vista
+      # binding.pry
+      @array_recuento = []
+      Topic.all.each do |topic|
+        hash_topic = Hash.new
+        hash_topic[:topico] = topic.nombre
+        hash_topic[:votos]  = topic.accounts.count
+        @array_recuento << hash_topic
+      end
+      render :bienvenida
+    end
+
     post '/interesados', :csrf_protection => false do
       # binding.pry
 
@@ -91,7 +104,8 @@ module EtlmdzFormu
       if account.valid?
         account.save
       else
-        @errores << "Problema creando la cuenta"
+        @errores << "Problema creando la cuenta. ¿Ha votado aquí anteriormente?"
+        @errores << "Si cree que es un error, por favor envíe sus datos, y un smile enojado a la lista de correo etlmdz@googlegroups.com"
       end
 
       if @errores.count == 0

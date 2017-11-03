@@ -1,0 +1,15 @@
+<h1>Encuentro de Tecnologias Libres</h1>
+<p>
+  <a href="http://etlmdz.github.com">http://etlmdz.github.io</a>
+</p>
+<h2>Temario de conferencias</h2>
+<h3>Recuento de votos</h3>
+<table>
+  <% @array_recuento.each do |conferencia| %>
+    <tr>
+      <%# binding.pry %>
+      <td><%= conferencia[:topico] %></td>
+      <td><%= conferencia[:votos]  %></td>
+    </tr>
+  <% end %>
+</table>
